@@ -17,7 +17,7 @@ function App() {
       desc: input
     }
 
-    fetch('/addTodo', {
+    fetch(`/addTodo/${id}`, {
       method: 'POST',
       body: JSON.stringify(bodyObject),
       headers: {
@@ -25,7 +25,10 @@ function App() {
       }
     })
     .then(res => res.json())
-    .then(resJson => console.log(resJson))
+    .then(resJson => {
+      console.log(resJson);
+      fetchTodos();
+    })
   }
 
   useEffect(fetchTodos, [])
